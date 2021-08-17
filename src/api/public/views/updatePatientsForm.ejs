@@ -4,17 +4,6 @@
   <h2>Update Patient</h2>
   <%if(data){%>
   <div>
-    <!-- <form
-    action="/admin/update/patient/<%= data.id_patient%>"
-    method="POST"
-    enctype="multipart/form-data"
-  >
-    <label for="monto">Nombre</label>
-    <input type="text" name="name" value="<%= data.Name%>" />
-    <label for="avance">Avance</label>
-    <input type="file" name="avance" value="<%= data.Advance%>" />
-    <button type="submit">Actualizar paciente</button>
-  </form> -->
     <form
       class="row g-3"
       action="/admin/update/patient/<%= data.id_patient%>"

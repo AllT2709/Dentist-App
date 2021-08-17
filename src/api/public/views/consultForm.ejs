@@ -3,20 +3,6 @@
   <h2>Update Consultation</h2>
   <%if(data){%>
   <div>
-    <!--  <form
-      action="/admin/update/consult/<%= data.id_consultation%>"
-      method="POST"
-    >
-      <label for="monto">Monto</label>
-      <input type="number" name="monto" value="<%= data.Monto%>" />
-      <label for="fecha">Fecha</label>
-      <input
-        type="datetime-local"
-        name="fecha"
-        value="<%= data.fecha_consulta%>"
-      />
-      <button type="submit">Actualizar cita</button>
-    </form> -->
     <form
       class="row g-3"
       action="/admin/update/consult/<%= data.id_consultation%>"
