@@ -1,0 +1,53 @@
+<%- include('template/logout')%>
+
+<div>
+  <h2>Update Patient</h2>
+  <%if(data){%>
+  <div>
+    <!-- <form
+    action="/admin/update/patient/<%= data.id_patient%>"
+    method="POST"
+    enctype="multipart/form-data"
+  >
+    <label for="monto">Nombre</label>
+    <input type="text" name="name" value="<%= data.Name%>" />
+    <label for="avance">Avance</label>
+    <input type="file" name="avance" value="<%= data.Advance%>" />
+    <button type="submit">Actualizar paciente</button>
+  </form> -->
+    <form
+      class="row g-3"
+      action="/admin/update/patient/<%= data.id_patient%>"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <div class="col-auto">
+        <label for="name" class="visually-hidden">Name</label>
+        <input
+          type="text"
+          class="form-control-plaintext"
+          id="staticEmail2"
+          name="name"
+          value="<%= data.Name%>"
+        />
+      </div>
+      <div class="col-auto">
+        <label for="avance" class="visually-hidden">Avance</label>
+        <input
+          type="file"
+          class="form-control-plaintext"
+          id="staticEmail2"
+          name="avance"
+          value="<%= data.Advance%>"
+        />
+      </div>
+      <div class="col-auto">
+        <button type="submit" class="btn btn-primary mb-3">
+          Actualizar paciente
+        </button>
+      </div>
+    </form>
+  </div>
+  <%}%>
+</div>
+<%- include('template/_footer')%>

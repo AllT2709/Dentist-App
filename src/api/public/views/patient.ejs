@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
+      crossorigin="anonymous"
+    ></script>
+    <title>Document</title>
+  </head>
+  <body>
+    <div class="container">
+      <div class="row mt-5">
+        <div class="col-md-6">
+          <!-- <form action="/patient-date" method="POST">
+            <label for="name">Name</label>
+            <input type="text" name="name" placeholder="your Name" />
+            <button type="submit">Consultar Cita</button>
+          </form> -->
+          <form class="row g-2" action="/patient-date" method="POST">
+            <div class="col-auto">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                class="form-control-plaintext"
+                name="name"
+                placeholder="your Name"
+              />
+            </div>
+            <div class="col-auto">
+              <button type="submit" class="btn btn-primary">Consultar</button>
+            </div>
+          </form>
+        </div>
+        <div class="col-md-7">
+          <% if(typeof data == 'object'){%>
+          <ul>
+            <li><%= data.fecha_consulta%></li>
+            <li><%= data.Monto%></li>
+            <li><%= data.Name%></li>
+            <li>
+              <% if(data.Advance == null ){%>
+              <p>Aun no tiene avances</p>
+              <% }else{%>
+              <a href="http://localhost:3000/downloads/<%=data.Name%>-date.pdf"
+                >Avances</a
+              >
+              <% }%>
+            </li>
+          </ul>
+          <% }else{%>
+          <h3><%= data %></h3>
+          <% }%>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

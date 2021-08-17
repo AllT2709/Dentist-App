@@ -1,0 +1,80 @@
+<%- include('template/logout')%>
+<div class="container">
+  <div class="row mt-5">
+    <div class="colo-md-5">
+      <!-- <form action="/admin/patient" method="POST" enctype="multipart/form-data">
+        <label for="name">Name</label>
+        <input type="text" name="name" placeholder="Nombre del paciente" />
+        <label for="avance">Avance</label>
+        <input type="file" name="avance" />
+        <button type="submit">Agregar paciente</button>
+      </form> -->
+      <form
+        class="row g-3"
+        action="/admin/patient"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="col-auto">
+          <label for="name" class="visually-hidden">Name</label>
+          <input
+            type="text"
+            class="form-control-plaintext"
+            id="staticEmail2"
+            name="name"
+            placeholder="Nombre del paciente"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="avance" class="visually-hidden">Avance</label>
+          <input
+            type="file"
+            class="form-control-plaintext"
+            id="staticEmail2"
+            name="avance"
+          />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">
+            Agregar Paciente
+          </button>
+        </div>
+      </form>
+    </div>
+    <div class="colo-md-7">
+      <% if(typeof data == 'object'){%>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Avance</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(d =>{%>
+          <tr>
+            <td><%= d.name%></td>
+            <td>
+              <% if(d.pdf == "No hay avances" ){%>
+              <p><%= d.pdf%></p>
+              <% }else{%>
+              <a href="http://localhost:3000/downloads/<%= d.pdf%>"
+                ><%= d.pdf%></a
+              >
+              <% }%>
+            </td>
+            <td>
+              <a href="/admin/update/patient/<%= d.id%>">update</a>
+              <a href="/admin/delete/patient/<%= d.id%>">borrar</a>
+            </td>
+          </tr>
+          <%})%>
+        </tbody>
+      </table>
+      <% }else{%>
+      <h3><%= data %></h3>
+      <% }%>
+    </div>
+  </div>
+</div>
+<%- include('template/_footer')%>

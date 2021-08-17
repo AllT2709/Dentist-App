@@ -1,0 +1,96 @@
+<%- include('template/logout')%>
+
+<div class="container">
+  <div class="mt-5">
+    <form action="/admin/consult" method="get">
+      <input type="datetime-local" name="fecha_consulta" />
+      <button type="submit" class="btn btn-primary">Buscar</button>
+    </form>
+  </div>
+  <div class="row mt-5">
+    <div class="col-md-5">
+      <!-- <form action="/admin/consult" method="POST">
+      <label for="name">Name</label>
+      <input type="text" name="name" placeholder="Nombre del paciente" />
+      <label for="monto">Monto</label>
+      <input type="number" name="monto" placeholder="El monto" />
+      <label for="fecha">Fecha</label>
+      <input type="datetime-local" name="fecha" />
+      <button type="submit">Crear cita</button>
+    </form> -->
+      <form class="row g-3" action="/admin/consult" method="POST">
+        <div class="col-auto">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control-plaintext"
+            id="staticEmail2"
+            name="name"
+            placeholder="Nombre del paciente"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="monto">Monto</label>
+          <input
+            type="number"
+            class="form-control-plaintext"
+            id="staticEmail2"
+            name="monto"
+            placeholder="El monto"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="fecha">Fecha</label>
+          <input
+            type="datetime-local"
+            name="fecha"
+            class="form-control"
+            id="inputPassword2"
+          />
+        </div>
+        <div class="col-auto">
+          <button type="submit" class="btn btn-primary mb-3">Crear cita</button>
+        </div>
+      </form>
+    </div>
+    <div class="col-md-7">
+      <% if(typeof data === 'object'){%>
+
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Date</th>
+            <th scope="col">Hour</th>
+            <th scope="col">Cost</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% data.forEach(d =>{%>
+          <tr>
+            <td><%= d.Name%></td>
+            <td>
+              <%=
+              `${d.fecha_consulta.getFullYear()}-${d.fecha_consulta.getMonth()}-${d.fecha_consulta.getDate()}`%>
+            </td>
+            <td>
+              <%=
+              `${d.fecha_consulta.getHours()}:${d.fecha_consulta.getMinutes()}`%>
+            </td>
+            <td><%= d.Monto%></td>
+            <td>
+              <a href="/admin/update/consult/<%= d.id_consultation%>">update</a>
+              <a href="/admin/delete/consult/<%= d.id_consultation%>">Hecho</a>
+            </td>
+          </tr>
+          <%})%>
+        </tbody>
+      </table>
+      <% }else{%>
+      <p><%= data %></p>
+      <% }%>
+    </div>
+  </div>
+</div>
+
+<%- include('template/_footer')%>
