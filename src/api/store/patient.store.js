@@ -1,14 +1,5 @@
-//const db = require("../../database/dummy");
 const db = require("../../database/database");
 const { getPerson, getById } = require("../../utils/getPerson");
-/* exports.getPatient = (tabla) => {
-  let query = `SELECT * FROM ${tabla}`;
-  return new Promise ((resolve) => {
-    db.query(query, (err,result) => {
-      resolve(result)
-    })
-  })
-}; */
 
 exports.getPatientById = (tabla, id) => {
   let query = `SELECT * FROM ${tabla} WHERE id_patient='${id}'`;
@@ -27,9 +18,6 @@ exports.addPatient = async (tabla, data) => {
   if (patientExist) {
     throw new Error("the patient exist");
   }
-  /* let query = `INSERT INTO ${tabla} (id_patient,Name${
-    data[0][2] ? ",Advance" : ""
-  }) VALUES ?`; */
   let query = `INSERT INTO ${tabla} SET ?`;
   return new Promise((resolve, reject) => {
     db.query(
