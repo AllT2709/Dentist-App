@@ -39,7 +39,11 @@
         <div class="col-md-7">
           <% if(typeof data == 'object'){%>
           <ul>
-            <li><%= data.fecha_consulta%></li>
+            <li>
+              <%=
+              `${data.fecha_consulta.getDate()}-${data.fecha_consulta.getMonth()+1}-${data.fecha_consulta.getFullYear()}
+              ${data.fecha_consulta.getHours()}:${data.fecha_consulta.getMinutes()}`%>
+            </li>
             <li><%= data.Monto%></li>
             <li><%= data.Name%></li>
             <li>

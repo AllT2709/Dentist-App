@@ -20,7 +20,15 @@ class Confirmation {
     store
       .confirmConuslt(TABLA, req.body.name)
       .then((result) => {
-        let data = !result ? "No tiene programado una cita" : result;
+        let data;
+        if (result) {
+          data = {
+            ...result,
+            fecha_consulta: new Date(result.fecha_consulta),
+          };
+        } else {
+          data = "No tiene programado una cita";
+        }
         this.data = data;
         res.redirect("/");
       })
