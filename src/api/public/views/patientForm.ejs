@@ -51,9 +51,7 @@
               <% if(d.pdf == "No hay avances" ){%>
               <p><%= d.pdf%></p>
               <% }else{%>
-              <a href="http://localhost:3000/downloads/<%= d.pdf%>"
-                ><%= d.pdf%></a
-              >
+              <a href="/downloads/<%= d.pdf%>"><%= d.pdf%></a>
               <% }%>
             </td>
             <td>
