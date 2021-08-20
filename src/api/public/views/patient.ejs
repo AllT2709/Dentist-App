@@ -1,66 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-KyZXEAg3QhqLMpG8r+8fhAXLRk2vvoC2f3B09zVXn8CA5QIVfZOJ3BCsw2P0p/We"
-      crossorigin="anonymous"
-    />
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-U1DAWAznBHeqEIlVSCgzq+c9gqGAJn5c/t99JyeKa9xxaYpSvHU5awsuZVVFIhvj"
-      crossorigin="anonymous"
-    ></script>
-    <title>Document</title>
-  </head>
-  <body>
-    <div class="container">
-      <div class="row mt-5 justify-content-center">
-        <div class="col-md-6">
-          <h3>Verifica tu consulta</h3>
-          <form
-            class="row g-2 card card-body"
-            action="/patient-date"
-            method="POST"
-          >
-            <div class="col-auto">
-              <input
-                type="text"
-                class="form-control"
-                name="name"
-                placeholder="your Name"
-              />
-            </div>
-            <button type="submit" class="btn btn-primary">Consultar</button>
-          </form>
+<%- include('template/header')%>
+
+<div class="container">
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-6">
+      <h3>Verifica tu consulta</h3>
+      <form class="row g-2 card card-body" action="/patient-date" method="POST">
+        <div class="col-auto">
+          <input
+            type="text"
+            class="form-control"
+            name="name"
+            placeholder="your Name"
+          />
         </div>
-        <div class="col-md-7 mt-3">
-          <% if(typeof data == 'object'){%>
-          <ul>
-            <li>
-              Date: <%=
-              `${data.fecha_consulta.getDate()}-${data.fecha_consulta.getMonth()+1}-${data.fecha_consulta.getFullYear()}
-              ${data.fecha_consulta.getHours()}:${data.fecha_consulta.getMinutes()}`%>
-            </li>
-            <li>Cost: <%= data.Monto%></li>
-            <li>Name: <%= data.Name%></li>
-            <li>
-              <% if(data.Advance == null ){%>
-              <p>Aun no tiene avances</p>
-              <% }else{%>
-              <a href="/downloads/<%=data.Name%>-date.pdf">Avances</a>
-              <% }%>
-            </li>
-          </ul>
-          <% }else{%>
-          <h3><%= data %></h3>
-          <% }%>
-        </div>
-      </div>
+        <button type="submit" class="btn btn-primary">Consultar</button>
+      </form>
     </div>
-  </body>
-</html>
+    <div class="col-md-7 mt-3">
+      <% if(typeof data == 'object'){%>
+      <ul>
+        <li>
+          Date: <%=
+          `${data.fecha_consulta.getDate()}-${data.fecha_consulta.getMonth()+1}-${data.fecha_consulta.getFullYear()}
+          ${data.fecha_consulta.getHours()}:${data.fecha_consulta.getMinutes()}`%>
+        </li>
+        <li>Cost: <%= data.Monto%></li>
+        <li>Name: <%= data.Name%></li>
+        <li>
+          <% if(data.Advance == null ){%>
+          <p>Aun no tiene avances</p>
+          <% }else{%>
+          <a href="/downloads/<%=data.Name%>-date.pdf">Avances</a>
+          <% }%>
+        </li>
+      </ul>
+      <% }else{%>
+      <h3><%= data %></h3>
+      <% }%>
+    </div>
+  </div>
+</div>
