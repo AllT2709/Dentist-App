@@ -1,41 +1,41 @@
 <%- include('template/logout')%>
 
-<div>
+<div class="container">
   <h2>Update Patient</h2>
   <%if(data){%>
-  <div>
-    <form
-      class="row g-3"
-      action="/admin/update/patient/<%= data.id_patient%>"
-      method="POST"
-      enctype="multipart/form-data"
-    >
-      <div class="col-auto">
-        <label for="name" class="visually-hidden">Name</label>
-        <input
-          type="text"
-          class="form-control-plaintext"
-          id="staticEmail2"
-          name="name"
-          value="<%= data.Name%>"
-        />
-      </div>
-      <div class="col-auto">
-        <label for="avance" class="visually-hidden">Avance</label>
-        <input
-          type="file"
-          class="form-control-plaintext"
-          id="staticEmail2"
-          name="avance"
-          value="<%= data.Advance%>"
-        />
-      </div>
-      <div class="col-auto">
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-6">
+      <form
+        class="row g-3 card card-body"
+        action="/admin/update/patient/<%= data.id_patient%>"
+        method="POST"
+        enctype="multipart/form-data"
+      >
+        <div class="col-auto">
+          <label for="name">Name</label>
+          <input
+            type="text"
+            class="form-control"
+            id="staticEmail2"
+            name="name"
+            value="<%= data.Name%>"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="avance">Avance</label>
+          <input
+            type="file"
+            class="form-control"
+            id="staticEmail2"
+            name="avance"
+            value="<%= data.Advance%>"
+          />
+        </div>
         <button type="submit" class="btn btn-primary mb-3">
           Actualizar paciente
         </button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
   <%}%>
 </div>

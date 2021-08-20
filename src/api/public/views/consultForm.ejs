@@ -1,39 +1,39 @@
 <%- include('template/logout')%>
-<div>
+<div class="container">
   <h2>Update Consultation</h2>
   <%if(data){%>
-  <div>
-    <form
-      class="row g-3"
-      action="/admin/update/consult/<%= data.id_consultation%>"
-      method="POST"
-    >
-      <div class="col-auto">
-        <label for="monto" class="visually-hidden">Monto</label>
-        <input
-          type="number"
-          class="form-control-plaintext"
-          id="staticEmail2"
-          name="monto"
-          value="<%= data.Monto%>"
-        />
-      </div>
-      <div class="col-auto">
-        <label for="fecha" class="visually-hidden">Fecha</label>
-        <input
-          type="datetime-local"
-          name="fecha"
-          class="form-control"
-          id="inputPassword2"
-          value="<%= data.fecha_consulta%>"
-        />
-      </div>
-      <div class="col-auto">
+  <div class="row mt-5 justify-content-center">
+    <div class="col-md-6">
+      <form
+        class="row g-3 card card-body"
+        action="/admin/update/consult/<%= data.id_consultation%>"
+        method="POST"
+      >
+        <div class="col-auto">
+          <label for="monto">Monto</label>
+          <input
+            type="number"
+            class="form-control"
+            id="staticEmail2"
+            name="monto"
+            value="<%= data.Monto%>"
+          />
+        </div>
+        <div class="col-auto">
+          <label for="fecha">Fecha</label>
+          <input
+            type="datetime-local"
+            name="fecha"
+            class="form-control"
+            id="inputPassword2"
+            value="<%= data.fecha_consulta%>"
+          />
+        </div>
         <button type="submit" class="btn btn-primary mb-3">
           Actualizar cita
         </button>
-      </div>
-    </form>
+      </form>
+    </div>
   </div>
   <%}%>
 </div>
