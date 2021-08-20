@@ -2,19 +2,25 @@
 
 <div class="container">
   <div class="mt-5">
+    <p>Buscar por día</p>
     <form action="/admin/consult" method="get">
       <input type="datetime-local" name="fecha_consulta" />
       <button type="submit" class="btn btn-primary">Buscar</button>
     </form>
   </div>
   <div class="row mt-5">
+    <p>Nueva Consulta</p>
     <div class="col-md-5">
-      <form class="row g-3" action="/admin/consult" method="POST">
+      <form
+        class="row g-3 card card-body"
+        action="/admin/consult"
+        method="POST"
+      >
         <div class="col-auto">
           <label for="name">Name</label>
           <input
             type="text"
-            class="form-control-plaintext"
+            class="form-control"
             id="staticEmail2"
             name="name"
             placeholder="Nombre del paciente"
@@ -24,7 +30,7 @@
           <label for="monto">Monto</label>
           <input
             type="number"
-            class="form-control-plaintext"
+            class="form-control"
             id="staticEmail2"
             name="monto"
             placeholder="El monto"
@@ -39,9 +45,7 @@
             id="inputPassword2"
           />
         </div>
-        <div class="col-auto">
-          <button type="submit" class="btn btn-primary mb-3">Crear cita</button>
-        </div>
+        <button type="submit" class="btn btn-primary mb-3">Crear cita</button>
       </form>
     </div>
     <div class="col-md-7">

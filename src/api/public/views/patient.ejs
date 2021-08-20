@@ -19,33 +19,34 @@
   </head>
   <body>
     <div class="container">
-      <div class="row mt-5">
+      <div class="row mt-5 justify-content-center">
         <div class="col-md-6">
-          <form class="row g-2" action="/patient-date" method="POST">
+          <form
+            class="row g-2 card card-body"
+            action="/patient-date"
+            method="POST"
+          >
             <div class="col-auto">
-              <label for="name">Name</label>
               <input
                 type="text"
-                class="form-control-plaintext"
+                class="form-control"
                 name="name"
                 placeholder="your Name"
               />
             </div>
-            <div class="col-auto">
-              <button type="submit" class="btn btn-primary">Consultar</button>
-            </div>
+            <button type="submit" class="btn btn-primary">Consultar</button>
           </form>
         </div>
-        <div class="col-md-7">
+        <div class="col-md-7 mt-3">
           <% if(typeof data == 'object'){%>
           <ul>
             <li>
-              <%=
+              Date: <%=
               `${data.fecha_consulta.getDate()}-${data.fecha_consulta.getMonth()+1}-${data.fecha_consulta.getFullYear()}
               ${data.fecha_consulta.getHours()}:${data.fecha_consulta.getMinutes()}`%>
             </li>
-            <li><%= data.Monto%></li>
-            <li><%= data.Name%></li>
+            <li>Cost: <%= data.Monto%></li>
+            <li>Name: <%= data.Name%></li>
             <li>
               <% if(data.Advance == null ){%>
               <p>Aun no tiene avances</p>

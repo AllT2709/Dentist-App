@@ -1,9 +1,27 @@
-<form action="/admin/" method="POST">
-  <label for="name">Name</label>
-  <input type="text" name="name" placeholder="your name" />
-  <label for="password">Password</label>
-  <input type="password" name="password" placeholder="your password" />
-  <button type="submit">login</button>
-</form>
+<%- include('template/header')%>
+<h2>Login</h2>
 
-<a href="/admin/register">Registrarse</a>
+<div class="row mt-5 justify-content-center">
+  <div class="col-md-6">
+    <form class="row g-2 card card-body" action="/admin/" method="POST">
+      <div class="col-auto form-group">
+        <input
+          type="text"
+          class="form-control"
+          name="name"
+          placeholder="your Name"
+        />
+      </div>
+      <div class="col-auto">
+        <input
+          type="password"
+          class="form-control"
+          name="password"
+          placeholder="your password"
+        />
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+  </div>
+</div>
+<%- include('template/_footer')%>
