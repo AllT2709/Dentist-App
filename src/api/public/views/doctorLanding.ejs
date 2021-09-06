@@ -9,13 +9,14 @@
     </form>
   </div>
   <div class="row mt-5">
-    <p>Nueva Consulta</p>
+    
     <div class="col-md-5">
       <form
-        class="row g-3 card card-body"
-        action="/admin/consult"
-        method="POST"
+      class="row g-3 card card-body"
+      action="/admin/consult"
+      method="POST"
       >
+      <h3>Nueva Consulta</h3>
         <div class="col-auto">
           <label for="name">Name</label>
           <input
@@ -49,8 +50,9 @@
       </form>
     </div>
     <div class="col-md-7">
+      <h3><%= day.day %></h3>
       <% if(typeof data === 'object'){%>
-
+        
       <table class="table">
         <thead>
           <tr>
@@ -65,12 +67,10 @@
           <tr>
             <td><%= d.Name%></td>
             <td>
-              <%=
-              `${d.fecha_consulta.getDate()}-${d.fecha_consulta.getMonth()+1}-${d.fecha_consulta.getFullYear()}`%>
+              <%= d.fecha_consulta.date%>
             </td>
             <td>
-              <%=
-              `${d.fecha_consulta.getHours()}:${d.fecha_consulta.getMinutes()}`%>
+              <%= d.fecha_consulta.hour%>
             </td>
             <td><%= d.Monto%></td>
             <td>

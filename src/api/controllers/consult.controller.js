@@ -2,6 +2,7 @@ const store = require("../store/consult.store");
 let { v4: uuid } = require("uuid");
 const config = require("../../../config");
 const { getConsul } = require("../../utils/getConsultation");
+const { getDate } = require("../../utils/consultationDate");
 
 const TABLA = config.consultTable;
 
@@ -23,24 +24,27 @@ class Consultation {
       });
   }
   getConsultationsByDay(req, res) {
-    let newDate = new Date();
-    let newDate2 = new Date(req.query.fecha_consulta);
-    let day = req.query.fecha_consulta
-      ? `${newDate2.getMonth() + 1}-${newDate2.getDate()}`
-      : `${newDate.getMonth() + 1}-${newDate.getDate()}`;
+    let newDate = req.query.fecha_consulta
+      ? new Date(req.query.fecha_consulta)
+      : new Date();
+    let day = `${newDate.getMonth() + 1}-${newDate.getDate()}`;
     store
       .getConsultationsByDay(TABLA, day)
       .then((result) => {
         let data;
+        let myDay = getDate(newDate);
         if (result[0] === undefined) {
           data = "there are not consultations this day";
         } else {
           data = result.map((r) => {
-            let result = { ...r, fecha_consulta: new Date(r.fecha_consulta) };
+            let result = {
+              ...r,
+              fecha_consulta: getDate(new Date(r.fecha_consulta)),
+            };
             return result;
           });
         }
-        res.status(200).render("doctorLanding", { data: data });
+        res.status(200).render("doctorLanding", { data: data, day: myDay });
       })
       .catch((err) => {
         res.status(404).json({ err: "An error ocurred" });
