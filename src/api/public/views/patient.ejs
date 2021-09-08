@@ -42,8 +42,7 @@
           <ul>
             <li>
               Date: <%=
-              `${data.fecha_consulta.getDate()}-${data.fecha_consulta.getMonth()+1}-${data.fecha_consulta.getFullYear()}
-              ${data.fecha_consulta.getHours()}:${data.fecha_consulta.getMinutes()}`%>
+              `${data.fecha_consulta.date}  ${data.fecha_consulta.hour}`%>
             </li>
             <li>Cost: <%= data.Monto%></li>
             <li>Name: <%= data.Name%></li>
