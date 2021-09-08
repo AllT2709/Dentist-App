@@ -42,7 +42,7 @@ exports.getConsultationsByDay = (tabla, day) => {
 
   return new Promise((resolve) => {
     db.query(query, (err, result) => {
-      resolve(result);
+      err ? reject(err) : resolve(result);
     });
   });
 };

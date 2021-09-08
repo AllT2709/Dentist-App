@@ -18,24 +18,23 @@
     </div>
     <div class="col-md-7 mt-3">
       <% if(typeof data == 'object'){%>
-      <ul>
-        <li>
-          Date: <%=
-          `${data.fecha_consulta.getDate()}-${data.fecha_consulta.getMonth()+1}-${data.fecha_consulta.getFullYear()}
-          ${data.fecha_consulta.getHours()}:${data.fecha_consulta.getMinutes()}`%>
-        </li>
-        <li>Cost: <%= data.Monto%></li>
-        <li>Name: <%= data.Name%></li>
-        <li>
-          <% if(data.Advance == null ){%>
-          <p>Aun no tiene avances</p>
-          <% }else{%>
-          <a href="/downloads/<%=data.Name%>-date.pdf">Avances</a>
-          <% }%>
-        </li>
-      </ul>
+        <ul>
+          <li>
+            Date: <%=
+              `${data.fecha_consulta.date}  ${data.fecha_consulta.hour}`%>
+          </li>
+          <li>Cost: <%= data.Monto%></li>
+          <li>Name: <%= data.Name%></li>
+          <li>
+            <% if(data.Advance == null ){%>
+              <p>Aun no tiene avances</p>
+            <% }else{%>
+                <a href="/downloads/<%=data.Name%>-date.pdf">Avances</a>
+            <% }%>
+          </li>
+        </ul>
       <% }else{%>
-      <h3><%= data %></h3>
+        <h3><%= data %></h3>
       <% }%>
     </div>
   </div>

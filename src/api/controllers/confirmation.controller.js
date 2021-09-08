@@ -2,6 +2,7 @@ const config = require("../../../config");
 const store = require("../store/confirmation.store");
 const TABLA = config.consultTable;
 const { getPerson } = require("../../utils/getPerson");
+const { getDate } = require("../../utils/consultationDate");
 
 class Confirmation {
   constructor() {
@@ -24,7 +25,7 @@ class Confirmation {
         if (result) {
           data = {
             ...result,
-            fecha_consulta: new Date(result.fecha_consulta),
+            fecha_consulta: getDate(new Date(result.fecha_consulta)),
           };
         } else {
           data = "No tiene programado una cita";
