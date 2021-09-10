@@ -10,7 +10,7 @@ class Confirmation {
   }
 
   getMyDateForm(req, res) {
-    res.render("patient", { data: this.data });
+    res.render("patient");
   }
 
   async getMyDate(req, res) {
@@ -31,7 +31,8 @@ class Confirmation {
         } else {
           data = "No tiene programado una cita";
         }
-        this.data = data;
+        //this.data = data;
+        req.session.data = data;
         res.redirect("/");
       })
       .catch((err) => {
