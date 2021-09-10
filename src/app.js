@@ -20,12 +20,9 @@ app.set("view engine", "ejs");
 
 app.use(
   session({
-    secret: config.jwt_secret,
+    secret: config.secret,
     resave: false,
     saveUninitialized: false,
-    cookie: {
-      maxAge: 10800000,
-    },
     store: new MySQLStore({
       host: config.host,
       user: config.userDB,

@@ -71,9 +71,8 @@ class Consultation {
         res.status(201).redirect("/admin/consult");
       })
       .catch((err) => {
-        res
-          .status(500)
-          .json({ message: "Error to add consult", err: err.message });
+        req.flash("error", err.message);
+        res.status(400).redirect("/admin/consult");
       });
   }
 
@@ -86,7 +85,8 @@ class Consultation {
         res.status(204).redirect("/admin/consult");
       })
       .catch((err) => {
-        res.status(404).json({ err: "An error ocurred", message: err.message });
+        req.flash("error", err.message);
+        res.status(400).redirect("/admin/consult");
       });
   }
 
@@ -103,7 +103,8 @@ class Consultation {
         res.status(201).redirect("/admin/consult");
       })
       .catch((err) => {
-        res.status(404).json({ err: "An error", message: err.message });
+        req.flash("error", err.message);
+        res.status(400).redirect(`/admin/update/consult/${req.params.id}`);
       });
   }
 }

@@ -1,9 +1,9 @@
-if (process.env.NODE_ENV !== 'production') {
-  require('dotenv').config();
+if (process.env.NODE_ENV !== "production") {
+  require("dotenv").config();
 }
 
 module.exports = {
-  dev: process.env.NODE_ENV !== 'production',
+  dev: process.env.NODE_ENV !== "production",
   port: process.env.PORT || 3000,
   host: process.env.HOST,
   userDB: process.env.DB_USERNAME,
@@ -16,5 +16,5 @@ module.exports = {
   doctorTable: process.env.DOCTOR_TABLE,
   consultTable: process.env.CONSULT_TABLE,
   patientTable: process.env.PATIENT_TABLE,
-
-}
+  secret: process.env.SECRET || "mysecret",
+};
