@@ -2,7 +2,7 @@ const store = require("../store/consult.store");
 let { v4: uuid } = require("uuid");
 const config = require("../../../config");
 const { getConsul } = require("../../utils/getConsultation");
-const { getDate } = require("../../utils/consultationDate");
+const { getDate, formatDate } = require("../../utils/consultationDate");
 
 const TABLA = config.consultTable;
 
@@ -27,7 +27,8 @@ class Consultation {
     let newDate = req.query.fecha_consulta
       ? new Date(req.query.fecha_consulta)
       : new Date();
-    let day = `${newDate.getMonth() + 1}-${newDate.getDate()}`;
+    let newDay = formatDate(newDate);
+    let day = `${newDay.month}-${newDay.day}`;
     store
       .getConsultationsByDay(TABLA, day)
       .then((result) => {
@@ -66,6 +67,7 @@ class Consultation {
     store
       .addConsutlation(TABLA, body)
       .then((consult) => {
+        req.flash("success", "Date saved successfully");
         res.status(201).redirect("/admin/consult");
       })
       .catch((err) => {
@@ -80,6 +82,7 @@ class Consultation {
       .deleteConsultation(TABLA, req.params.id)
       .then((patient) => {
         //res.status(204).json(patient);
+        req.flash("success", "Date deleted successfully");
         res.status(204).redirect("/admin/consult");
       })
       .catch((err) => {
@@ -96,6 +99,7 @@ class Consultation {
       .updateConsultation(TABLA, body, req.params.id)
       .then((patient) => {
         //res.status(200).json(patient);
+        req.flash("success", "Date updated successfully");
         res.status(201).redirect("/admin/consult");
       })
       .catch((err) => {

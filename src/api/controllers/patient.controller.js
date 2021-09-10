@@ -72,6 +72,7 @@ class Controller {
     store
       .addPatient(TABLA, newPatient)
       .then((patient) => {
+        req.flash("success", "Patient saved successfully");
         res.status(201).redirect("/admin/patients");
       })
       .catch((err) => {
@@ -83,6 +84,7 @@ class Controller {
     store
       .deletePatient(TABLA, req.params.id)
       .then((patient) => {
+        req.flash("success", "Patient deleted successfully");
         res.status(204).redirect("/admin/patients");
       })
       .catch((err) => {
@@ -104,6 +106,7 @@ class Controller {
     store
       .updatePatient(TABLA, body, req.params.id)
       .then((patient) => {
+        req.flash("success", "Patient updated successfully");
         res.status(200).redirect("/admin/patients");
       })
       .catch((err) => {

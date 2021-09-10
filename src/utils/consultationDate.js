@@ -7,3 +7,12 @@ exports.getDate = (date) => {
   };
   return dates;
 };
+
+exports.formatDate = (date) => {
+  let month = date.getMonth() + 1;
+  let newDate = {
+    month: month < 10 ? `0${month}` : `${month}`,
+    day: date.getDate() < 10 ? `0${date.getDate()}` : `${date.getDate()}`,
+  };
+  return newDate;
+};

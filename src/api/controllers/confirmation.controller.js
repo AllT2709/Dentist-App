@@ -16,7 +16,8 @@ class Confirmation {
   async getMyDate(req, res) {
     let patient = await getPerson(config.patientTable, req.body.name);
     if (!patient || patient === undefined) {
-      return res.status(400).json("No está registrado en el sistema");
+      req.flash("error", "No esta registrado en el sistema");
+      res.status(406);
     }
     store
       .confirmConuslt(TABLA, req.body.name)
@@ -34,6 +35,7 @@ class Confirmation {
         res.redirect("/");
       })
       .catch((err) => {
+        //req.flash('error', 'something wrong')
         res.status(400).json({ err: "Somethim wrong", message: err.message });
       });
   }

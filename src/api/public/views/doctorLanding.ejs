@@ -1,4 +1,4 @@
-<%- include('template/logout')%>
+<%- include('template/navbar')%> <%- include('template/messages')%>
 
 <div class="container">
   <div class="mt-5">
@@ -9,14 +9,13 @@
     </form>
   </div>
   <div class="row mt-5">
-    
     <div class="col-md-5">
       <form
-      class="row g-3 card card-body"
-      action="/admin/consult"
-      method="POST"
+        class="row g-3 card card-body"
+        action="/admin/consult"
+        method="POST"
       >
-      <h3>Nueva Consulta</h3>
+        <h3>Nueva Consulta</h3>
         <div class="col-auto">
           <label for="name">Name</label>
           <input
@@ -52,7 +51,7 @@
     <div class="col-md-7">
       <h3><%= day.day %></h3>
       <% if(typeof data === 'object'){%>
-        
+
       <table class="table">
         <thead>
           <tr>
@@ -66,12 +65,8 @@
           <% data.forEach(d =>{%>
           <tr>
             <td><%= d.Name%></td>
-            <td>
-              <%= d.fecha_consulta.date%>
-            </td>
-            <td>
-              <%= d.fecha_consulta.hour%>
-            </td>
+            <td><%= d.fecha_consulta.date%></td>
+            <td><%= d.fecha_consulta.hour%></td>
             <td><%= d.Monto%></td>
             <td>
               <a href="/admin/update/consult/<%= d.id_consultation%>">update</a>

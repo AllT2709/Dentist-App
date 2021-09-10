@@ -65,6 +65,7 @@ class Controller {
 
     if (!doctor || !pass) {
       //return res.status(400).json("nombre o  contraseña invalidos");
+      req.flash("error", "constraseña o usuario incorrectos");
       return res.status(400).redirect("/admin/");
     }
     let dataToSign = {
@@ -72,6 +73,7 @@ class Controller {
       id: doctor.id,
     };
     let token = await jwt.sign(dataToSign);
+    req.session.user = true;
     res
       .cookie("jwt", token, {
         httpOnly: true,
@@ -85,6 +87,7 @@ class Controller {
   logOut(req, res) {
     if (req.cookies["jwt"]) {
       //res.clearCookie("jwt").status(200).json("has salido de la sesión");
+      req.session.destroy();
       res.clearCookie("jwt").status(200).redirect("/admin/");
     } else {
       res.status(401).json("token inválido");

@@ -1,0 +1,11 @@
+<%- include('./head')%>
+<body>
+  <head>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
+        <% if(user){ %> <%- include('./logout')%> <% }else{ %> <%-
+        include('./header')%> <% } %>
+      </div>
+    </nav>
+  </head>
+</body>
