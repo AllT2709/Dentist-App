@@ -34,12 +34,14 @@ class Controller {
     res.render("register");
   }
   async postDoctor(req, res) {
-    if (!req.body.name) {
-      return res.status(400).json("Require parameters");
+    if (!req.body.name || !req.body.password) {
+      req.flash("error", "Complete los campos");
+      return res.status(400).redirect("/admin/register");
     }
     let doctorAdmin = await getPerson(config.doctorTable, req.body.name);
     if (doctorAdmin) {
-      return res.status(400).json("Ese usuario ya esxiste");
+      req.flash("error", "El usuario ya existe");
+      return res.status(400).redirect("/admin/register");
     }
     let id = uuid();
     let password = await bcrypt.hash(req.body.password, 8);
@@ -58,6 +60,10 @@ class Controller {
     res.render("loginDoctor");
   }
   async loginDoctor(req, res) {
+    if (!req.body.name || !req.body.password) {
+      req.flash("error", "Complete los campos");
+      return res.status(400).redirect("/admin/");
+    }
     let doctor = await getPerson(TABLA, req.body.name);
     let pass = !doctor
       ? false

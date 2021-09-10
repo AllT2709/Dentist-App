@@ -4,12 +4,12 @@ const { getConsul } = require("../../utils/getConsultation");
 const config = require("../../../config");
 
 exports.addConsutlation = async (tabla, body) => {
+  if (!body.id || !body.date || !body.monto || body.name == undefined) {
+    return Promise.reject(new Error("You must provide data to add"));
+  }
   let idPatient = await getPerson(config.patientTable, body.name);
   if (!idPatient || idPatient === undefined) {
     throw new Error("Patient does not exist");
-  }
-  if (!body.id || !body.date || !body.monto) {
-    return Promise.reject(new Error("You must provide data to update"));
   }
   let query = `INSERT INTO ${tabla} (id_consultation,Fecha_consulta,Monto,id_patient) VALUES ?`;
   return new Promise((resolve, reject) => {

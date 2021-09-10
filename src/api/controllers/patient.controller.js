@@ -60,9 +60,9 @@ class Controller {
 
   addPatient(req, res) {
     let id = uuid();
-    if (!req.body.name) {
+    /* if (!req.body.name) {
       return res.status(400).json("Se require el campo nombre");
-    }
+    } */
     let pathFile = path.join(__dirname, "../public/uploads");
     let file = req.file
       ? fs.readFileSync(`${pathFile}/${req.file.filename}`)
@@ -76,7 +76,8 @@ class Controller {
         res.status(201).redirect("/admin/patients");
       })
       .catch((err) => {
-        res.status(409).json({ err: "An error ocurred", message: err.message });
+        req.flash("error", err.message);
+        res.status(409).redirect("/admin/patients");
       });
   }
 
@@ -88,7 +89,8 @@ class Controller {
         res.status(204).redirect("/admin/patients");
       })
       .catch((err) => {
-        res.status(404).json({ err: "An error ocurred", message: err.message });
+        req.flash("error", err.message);
+        res.status(409).redirect("/admin/patients");
       });
   }
 
@@ -110,7 +112,8 @@ class Controller {
         res.status(200).redirect("/admin/patients");
       })
       .catch((err) => {
-        res.status(404).json({ err: "An error", message: err.message });
+        req.flash("error", err.message);
+        res.status(409).redirect(`/admin/update/patient/${req.params.id}`);
       });
   }
 }

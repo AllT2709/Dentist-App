@@ -14,6 +14,9 @@ exports.getPatientById = (tabla, id) => {
 };
 
 exports.addPatient = async (tabla, data) => {
+  if (!data.name || data.name == undefined) {
+    throw new Error("You must provide data to add");
+  }
   let patientExist = await getPerson(tabla, data.name);
   if (patientExist) {
     throw new Error("the patient exist");
@@ -53,6 +56,9 @@ exports.updatePatient = async (tabla, data, id) => {
   let patient = await getById(tabla, id);
   if (patient === undefined) {
     throw new Error("Patient does not exist");
+  }
+  if (!data.Name || data.Name == undefined) {
+    return Promise.reject(new Error("You must provide data to update"));
   }
   let query = `UPDATE ${tabla} SET ? WHERE id_patient='${id}'`;
   return new Promise((resolve, reject) => {
