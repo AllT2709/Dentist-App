@@ -78,6 +78,7 @@ class Controller {
       .cookie("jwt", token, {
         httpOnly: true,
         secure: !config.dev,
+        maxAge: 10800000,
       })
       .status(200)
       .redirect("/admin/consult");
