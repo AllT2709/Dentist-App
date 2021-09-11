@@ -40,7 +40,7 @@ exports.getConsultationsByDay = (tabla, day) => {
   let query = `SELECT c.fecha_consulta,c.Monto, p.Name,c.id_consultation  FROM ${tabla} c, Patient p 
           WHERE c.fecha_consulta LIKE '%${day}%' AND c.id_patient = p.id_patient`;
 
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     db.query(query, (err, result) => {
       err ? reject(err) : resolve(result);
     });
