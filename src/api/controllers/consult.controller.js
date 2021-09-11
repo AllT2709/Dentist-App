@@ -24,9 +24,10 @@ class Consultation {
       });
   }
   getConsultationsByDay(req, res) {
-    let newDate = req.query.fecha_consulta
-      ? new Date(req.query.fecha_consulta)
-      : new Date();
+    let newDate =
+      req.query.fecha_consulta != undefined && req.query.fecha_consulta != ""
+        ? new Date(req.query.fecha_consulta)
+        : new Date();
     let newDay = formatDate(newDate);
     let day = `${newDay.month}-${newDay.day}`;
     store
