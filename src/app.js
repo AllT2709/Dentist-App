@@ -2,7 +2,8 @@ const express = require("express");
 const morgan = require("morgan");
 const flash = require("connect-flash");
 const session = require("express-session");
-const MySQLStore = require("express-mysql-session");
+//const MySQLStore = require("express-mysql-session")(session);
+const MemoryStore = require("memorystore")(session);
 const admin = require("./api/routes/admin.routes");
 const patient = require("./api/routes/patient.routes");
 const notFound = require("./utils/middlewares/notFound");
@@ -23,12 +24,15 @@ app.use(
     secret: config.secret,
     resave: false,
     saveUninitialized: false,
-    store: new MySQLStore({
+    store: new MemoryStore({
+      checkPeriod: 10800000,
+    }),
+    /* store: new MySQLStore({
       host: config.host,
       user: config.userDB,
       password: config.password,
       database: config.database,
-    }),
+    }), */
   })
 );
 app.use(flash());

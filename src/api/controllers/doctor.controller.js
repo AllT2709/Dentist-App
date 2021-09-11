@@ -70,7 +70,6 @@ class Controller {
       : await bcrypt.compare(req.body.password, doctor.password);
 
     if (!doctor || !pass) {
-      //return res.status(400).json("nombre o  contraseña invalidos");
       req.flash("error", "constraseña o usuario incorrectos");
       return res.status(400).redirect("/admin/");
     }
@@ -88,16 +87,14 @@ class Controller {
       })
       .status(200)
       .redirect("/admin/consult");
-    //.json({ token, message: "logeado!" });
   }
 
   logOut(req, res) {
     if (req.cookies["jwt"]) {
-      //res.clearCookie("jwt").status(200).json("has salido de la sesión");
       req.session.destroy();
       res.clearCookie("jwt").status(200).redirect("/admin/");
     } else {
-      res.status(401).json("token inválido");
+      res.status(401).redirect("/admin/");
     }
   }
 }
