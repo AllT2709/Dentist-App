@@ -31,6 +31,9 @@ class Controller {
       });
   }
   registerForm(req, res) {
+    if (req.cookies["jwt"]) {
+      return res.redirect("/admin/consult");
+    }
     res.render("register");
   }
   async postDoctor(req, res) {
@@ -57,6 +60,9 @@ class Controller {
   }
 
   lofinForm(req, res) {
+    if (req.cookies["jwt"]) {
+      return res.redirect("/admin/consult");
+    }
     res.render("loginDoctor");
   }
   async loginDoctor(req, res) {
