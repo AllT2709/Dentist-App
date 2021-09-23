@@ -10,6 +10,9 @@ class Confirmation {
   }
 
   getMyDateForm(req, res) {
+    if (req.cookies["jwt"]) {
+      return res.redirect("/admin/consult");
+    }
     res.render("patient");
   }
 
